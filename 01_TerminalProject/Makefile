@@ -1,0 +1,5 @@
+make:	Show.c
+	gcc Show.c -lncursesw -o Show
+
+clean:
+	rm -f *.o Show *.out
