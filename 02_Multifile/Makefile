@@ -1,5 +1,5 @@
 .PHONY: all clean distclean
-CFLAGS = -Wall
+CFLAGS = -Wall -fPIC
 GENERATES = prog prog-a prog-so README
 TRASH = *.o *~ o.* *.a *.so test-prog-*
 

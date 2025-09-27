@@ -5,8 +5,6 @@ void output(char *str) {
 }
 
 void usage(char *prog) {
-        // fprintf(stderr, "%s v%.2f: Print all arguments\012\t"\
-        //                 "Usage: %s arg1 [arg2 […]]\012", prog, VERSION, prog);
         fprintf(stderr, "prog v%.2f: Print all arguments\012\t"\
                 "Usage: prog arg1 [arg2 […]]\012", VERSION);
 }
