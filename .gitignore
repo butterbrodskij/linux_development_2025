@@ -1,3 +1,10 @@
 *.out
 *.o
 Show
+prog
+prog-a
+prog-so
+README
+*.a
+*.so
+test*
