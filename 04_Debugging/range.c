@@ -26,8 +26,8 @@ int main(int argc, char **argv) {
 			return 0;
 	}
 
-	for (; m < n; m += s) {
-		printf("%d\n", m);
+	for (int i = m; s > 0 && i < n || s < 0 && i > n; i += s) {
+		printf("%d\n", i);
 	}
 
 	return 0;

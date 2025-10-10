@@ -2,7 +2,7 @@ GENERATES = range
 TRASH = *.o test-range-*
 
 range:	range.c
-	cc -O0 -g range.c -o range
+	$(CC) -O0 -g range.c -o range
 
 test:	range
 	echo "source range1.gdb" | gdb range | grep @@@ | sed 's/@@@ //g' > test-range-1 2>&1
