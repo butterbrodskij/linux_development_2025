@@ -24,8 +24,8 @@ Starts an interactive hashing session. Type commands or use Ctrl+D to exit.
 ```bash
 # Interactive mode
 ./rhasher
-> MD5 "hello world"        # Hex output (uppercase algorithm)
-> md5 "hello world"        # Base64 output (lowercase algorithm)  
+> MD5 "hello_world         # Hex output (uppercase algorithm)
+> md5 "hello_world         # Base64 output (lowercase algorithm)  
 > SHA1 document.pdf        # File hashing
 > sha1 document.pdf        # File hashing in Base64
 
