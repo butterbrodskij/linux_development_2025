@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include "rhash.h"
 #include <unistd.h>
+#include "config.h"
 
 #ifdef USE_READLINE
 #include <readline/readline.h>
@@ -84,7 +85,7 @@ int main() {
 			rl_outstream = stderr;
 		}
 	}
-	const char *intro = interactive ? "> " : NULL;
+	const char *intro = interactive ? ">> " : NULL;
 	while ((line = readline(intro))) {
 		if (!strlen(line)) {
 			continue;
