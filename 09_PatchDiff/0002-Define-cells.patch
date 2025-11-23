@@ -1,0 +1,61 @@
+--- lab0.c	2025-11-24 00:15:26.911930000 +0300
++++ lab1.c	2025-11-24 00:14:54.931930000 +0300
+@@ -4,15 +4,15 @@
+ 
+ #define SIZE 6
+ 
+-char** initialize_lab(int size) {
++char** initialize_lab(int size, char wall, char empty) {
+ 	char **lab = malloc(sizeof(char*) * (size*2+1));
+ 	for (int i = 0; i < size*2+1; i++) {
+ 		lab[i] = malloc(size*2+1);
+ 		for (int j = 0; j < size*2+1; j++) {
+ 			if (i % 2 && j % 2) {
+-				lab[i][j] = '.';
++				lab[i][j] = empty;
+ 			} else {
+-				lab[i][j] = '#';
++				lab[i][j] = wall;
+ 			}
+ 		}
+ 	}
+@@ -69,8 +69,14 @@
+ 
+ int main(int argc, char **argv) {
+ 	int size = SIZE;
++	char wall = '#', empty = '.';
+ 	if (argc > 1) {
+-		size = atoi(argv[1]);
++		empty = argv[1][0];
++		wall = argv[1][1];
++
++		if (argc > 2) {
++			size = atoi(argv[2]);
++		}
+ 	}
+ 
+ 	if (size <= 0) {
+@@ -78,8 +84,13 @@
+ 		return 1;
+ 	}
+ 
++	if (!wall || !empty) {
++		printf("invalid symbols\n");
++		return 1;
++	}
++
+ 	srand(time(NULL));
+-	char **lab = initialize_lab(size);
++	char **lab = initialize_lab(size, wall, empty);
+ 
+ 	int first_room = rand() % (size*size);
+ 	char *checked = calloc(size*size, sizeof(char));
+@@ -99,7 +110,7 @@
+ 		int door_choice = candidates[rand() % candidates_size];
+ 		int door_i = door_choice / size + next_room / size + 1;
+ 		int door_j = door_choice % size + next_room % size + 1;
+-		lab[door_i][door_j] = '.';
++		lab[door_i][door_j] = empty;
+ 		neighbours_size = get_neighbours(neighbours, neighboured, next_room, neighbours_size, size);
+ 	}
+ 

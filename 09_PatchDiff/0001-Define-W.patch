@@ -1,0 +1,57 @@
+--- lab.c	2025-11-23 23:59:23.741930000 +0300
++++ lab1.c	2025-11-23 23:59:42.471930000 +0300
+@@ -68,32 +68,42 @@
+ }
+ 
+ int main(int argc, char **argv) {
++	int size = SIZE;
++	if (argc > 1) {
++		size = atoi(argv[1]);
++	}
++
++	if (size <= 0) {
++		printf("invalid size\n");
++		return 1;
++	}
++
+ 	srand(time(NULL));
+-	char **lab = initialize_lab(SIZE);
++	char **lab = initialize_lab(size);
+ 
+-	int first_room = rand() % (SIZE*SIZE);
+-	char *checked = calloc(SIZE*SIZE, sizeof(char));
+-	char *neighboured = calloc(SIZE*SIZE, sizeof(char));
++	int first_room = rand() % (size*size);
++	char *checked = calloc(size*size, sizeof(char));
++	char *neighboured = calloc(size*size, sizeof(char));
+ 	checked[first_room] = 1;
+ 	neighboured[first_room] = 1;
+-	int *neighbours = malloc(SIZE*SIZE * sizeof(int));
+-	int neighbours_size = get_neighbours(neighbours, neighboured, first_room, 0, SIZE);
++	int *neighbours = malloc(size*size * sizeof(int));
++	int neighbours_size = get_neighbours(neighbours, neighboured, first_room, 0, size);
+ 
+-	for (int i = 1; i < SIZE*SIZE; i++) {
++	for (int i = 1; i < size*size; i++) {
+ 		int next_room_idx = rand() % neighbours_size;
+ 		int next_room = neighbours[next_room_idx];
+ 		checked[next_room] = 1;
+ 		neighbours[next_room_idx] = neighbours[--neighbours_size];
+ 		int candidates[4];
+-		int candidates_size = get_candidates(candidates, checked, next_room, SIZE);
++		int candidates_size = get_candidates(candidates, checked, next_room, size);
+ 		int door_choice = candidates[rand() % candidates_size];
+-		int door_i = door_choice / SIZE + next_room / SIZE + 1;
+-		int door_j = door_choice % SIZE + next_room % SIZE + 1;
++		int door_i = door_choice / size + next_room / size + 1;
++		int door_j = door_choice % size + next_room % size + 1;
+ 		lab[door_i][door_j] = '.';
+-		neighbours_size = get_neighbours(neighbours, neighboured, next_room, neighbours_size, SIZE);
++		neighbours_size = get_neighbours(neighbours, neighboured, next_room, neighbours_size, size);
+ 	}
+ 
+-	print_and_free_lab(lab, SIZE);
++	print_and_free_lab(lab, size);
+ 	free(checked);
+ 	free(neighboured);
+ 

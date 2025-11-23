@@ -1,0 +1,32 @@
+--- lab1.c	2025-11-24 00:49:07.231930000 +0300
++++ lab2.c	2025-11-24 00:51:16.351930000 +0300
+@@ -70,12 +70,16 @@
+ int main(int argc, char **argv) {
+ 	int size = SIZE;
+ 	char wall = '#', empty = '.';
++	unsigned seed = time(NULL);
+ 	if (argc > 1) {
+-		empty = argv[1][0];
+-		wall = argv[1][1];
+-
++		seed = atoi(argv[1]);
+ 		if (argc > 2) {
+-			size = atoi(argv[2]);
++			empty = argv[2][0];
++			wall = argv[2][1];
++
++			if (argc > 3) {
++				size = atoi(argv[3]);
++			}
+ 		}
+ 	}
+ 
+@@ -89,7 +93,7 @@
+ 		return 1;
+ 	}
+ 
+-	srand(time(NULL));
++	srand(seed);
+ 	char **lab = initialize_lab(size, wall, empty);
+ 
+ 	int first_room = rand() % (size*size);
