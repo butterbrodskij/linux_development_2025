@@ -96,6 +96,7 @@ int main(int argc, char **argv) {
 	print_and_free_lab(lab, SIZE);
 	free(checked);
 	free(neighboured);
+	free(neighbours);
 
 	return 0;
 }
