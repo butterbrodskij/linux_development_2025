@@ -2,7 +2,9 @@ GENERATES = lab? lab?.c
 TRASH = *.o
 CFLAGS = -g -O0 -Wall
 
-all:	lab0 lab1 lab2 lab3
+all:	run
+
+run:	lab0 lab1 lab2 lab3
 	./lab0
 	./lab1 8
 	./lab2 ' @' 5
@@ -27,3 +29,4 @@ lab3.c:	lab2.c
 
 clean:
 	rm -f $(TRASH) $(GENERATES)
+	rm -rf *.dSYM
