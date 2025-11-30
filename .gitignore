@@ -7,4 +7,5 @@ prog-so
 README
 *.a
 *.so
-test*
+test-*
+
