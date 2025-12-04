@@ -8,6 +8,7 @@ A command-line number guessing game that uses binary search algorithm to guess y
 - Flexible answer recognition (Yes/No in multiple languages)
 - Standard autotools build system
 - Roman numbers support
+- Extensive documentation and man support
 
 ## Usage
 
@@ -31,6 +32,9 @@ LANG=ru_RU.UTF-8 LC_ALL=ru_RU.UTF-8 /path/to/guesser
 
 # Start server with doxygen documentation
 make http
+
+# View manual page
+MANPATH=$MANPATH:./doxygen-doc/man/ man guesser
 ```
 
 ### Game Play
