@@ -33,6 +33,9 @@ LANG=ru_RU.UTF-8 LC_ALL=ru_RU.UTF-8 /path/to/guesser
 # Start server with doxygen documentation
 make http
 
+# View manual page if recommended build was used
+man guesser
+
 # View manual page
 MANPATH=$MANPATH:./doxygen-doc/man/ man guesser
 ```
@@ -59,6 +62,21 @@ The game recognizes multiple answer formats:
 
 ## Build and Install
 
+### Recommended Build (Requires sudo)
+```bash
+# Generate configure script
+autoreconf -fisv
+
+# Configure and build
+./configure --prefix /usr && sudo make install
+
+# Run installed version
+guesser
+
+# Get help
+guesser -h
+```
+
 ### Standard Build
 ```bash
 # Generate configure script
@@ -72,6 +90,11 @@ make run-ru
 
 # Get help
 /path/to/guesser -h
+
+# With code coverage
+./configure --enable-gcov --prefix /tmp && make install
+make check  # Run tests
+make gcov   # View coverage report
 ```
 
 ### Development Commands
@@ -79,6 +102,12 @@ make run-ru
 # Quick testing
 make run-ru          # Build and run with Russian locale
 make run-en          # Build and run with English locale
+
+# Unit-tests
+make check  # Run tests
+
+# Cleanup if recommended build was used
+sudo make maintainer-clean  # Remove all generated files
 
 # Cleanup
 make maintainer-clean  # Remove all generated files
